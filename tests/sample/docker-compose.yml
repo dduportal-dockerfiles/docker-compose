@@ -1,0 +1,4 @@
+front:
+  build: .
+bb:
+  image: busybox:latest
