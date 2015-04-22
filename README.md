@@ -51,3 +51,18 @@ Be careful using volumes : since the goal of this image is to wrap docker-compos
 This issue explains how : https://github.com/dduportal/dockerfiles/issues/5 .
 
 The idea is to provide a full "host point of view path" for the volume to mount, since the containerised docker-compose may not have access to the full filesystem.
+
+## Contributing
+
+Do not hesitate to contribute by forking this repository
+
+Pick at least one :
+
+* Implement tests in ```/tests/bats/```
+
+* Write the Dockerfile
+
+* (Re)Write the documentation corrections
+
+
+Finnaly, open the Pull Request : CircleCi will automatically build and test for you
