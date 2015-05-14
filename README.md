@@ -10,14 +10,24 @@ More information on the official Docker documentation : https://docs.docker.com/
 
 Just run it as a normal command, sharing the directory containing your docker-compose.yml file and the Docker Unix socket :
 
-    docker run -v "$(pwd)":/app -v /var/run/docker.sock:/var/run/docker.sock -ti dduportal/docker-compose:latest --help
+```bash
+$ docker run -v "$(pwd)":/app -v /var/run/docker.sock:/var/run/docker.sock -ti dduportal/docker-compose:latest --help
+```
 
 **Customize the Docker socket**
 
-When using another socket than the default Unix one, you can provide the path to docker-compose thru DOCKER_HOST environment variable.
+When using another socket than the default Unix one (remote Docker engine use case), you can provide the path to docker-compose thru DOCKER_HOST environment variable.
 In this example, we'll call docker-compose non-interactively (from a bash script for example), given that the Docker daemon listen thru a TCP connexion at 10.0.2.15:2375 :
 
-    docker run -v "$(pwd)":/app -e DOCKER_HOST=tcp://10.0.2.15:2375 dduportal/docker-compose:latest up -d
+```bash
+$ docker run -v "$(pwd)":/app -e DOCKER_HOST=tcp://10.0.2.15:2375 dduportal/docker-compose:latest up -d
+```
+
+On Windows, you should add ```/``` to help the path conversion [(courtesy of @joostfarla)](https://github.com/dduportal-dockerfiles/docker-compose/issues/1#issuecomment-99464292) :
+
+```
+> docker run -v /$(pwd):/app ...
+```
 
 **Convenience mode :**
 
