@@ -4,6 +4,8 @@ Compose is a tool for defining and running complex applications with Docker. Wit
 
 More information on the official Docker documentation : https://docs.docker.com/compose/
 
+[![CircleCi Build Status](https://circleci.com/gh/dduportal-dockerfiles/docker-compose.svg?&style=shield&circle-token=a7fd546c08f8c0a1bf0ff211b07d14f204e65be1)](https://circleci.com/gh/dduportal-dockerfiles/docker-compose)
+
 ## How do you use this image ? ##
 
 **Interactive and basic mode :**
