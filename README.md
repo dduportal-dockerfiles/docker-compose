@@ -13,33 +13,35 @@ More information on the official Docker documentation : https://docs.docker.com/
 Just run it as a normal command, sharing the directory containing your docker-compose.yml file and the Docker Unix socket :
 
 ```bash
-$ docker run -v "$(pwd)":/app -v /var/run/docker.sock:/var/run/docker.sock -ti dduportal/docker-compose:latest --help
+$ docker run -v "$(pwd)":/app -v /var/run/docker.sock:/var/run/docker.sock -ti --rm dduportal/docker-compose:latest --help
 ```
 
 **Customize the Docker socket**
 
-When using another socket than the default Unix one (remote Docker engine use case), you can provide the path to docker-compose thru DOCKER_HOST environment variable.
-In this example, we'll call docker-compose non-interactively (from a bash script for example), given that the Docker daemon listen thru a TCP connexion at 10.0.2.15:2375 :
+When using another socket than the default Unix one (remote Docker engine use case), you can provide the path to docker-compose using the DOCKER_HOST environment variable.
+In this example, we'll call docker-compose non-interactively (from a bash script for example), given that the Docker daemon listen through a TCP connection at 10.0.2.15:2375 :
 
 ```bash
-$ docker run -v "$(pwd)":/app -e DOCKER_HOST=tcp://10.0.2.15:2375 dduportal/docker-compose:latest up -d
+$ docker run -v "$(pwd)":/app -e DOCKER_HOST=tcp://10.0.2.15:2375 --rm dduportal/docker-compose:latest up -d
 ```
 
-On Windows, you should add ```/``` to help the path conversion [(courtesy of @joostfarla)](https://github.com/dduportal-dockerfiles/docker-compose/issues/1#issuecomment-99464292) :
+On Windows when using the Boot2Docker provided MSYS shell, you should add ```/``` before each of the host paths passed to ```-v```, to help the path conversion [(courtesy of @joostfarla)](https://github.com/dduportal-dockerfiles/docker-compose/issues/1#issuecomment-99464292) :
 
 ```
-> docker run -v /$(pwd):/app ...
+> docker run -v "/$(pwd)":/app -v //var/run/docker.sock:/var/run/docker.sock -ti --rm dduportal/docker-compose:latest
 ```
+
+Note: On Windows, if you are using MSYS **v2** or Cygwin (where ```pwd``` in the home directory returns /home/Foo, rather than /c/Users/Foo), you'll also need to replace ```$(pwd)``` with ```$(pwd | sed s_/home_/c/Users_)```, so the correct directory is mounted.
 
 **Convenience mode :**
 
-If you don't want to repeat yourself by typing all the options each time, just add an aliase (interactive or in your .profile/.ashrc/etc :
+If you don't want to repeat yourself by typing all the options each time, just add an alias (interactive or in your .profile/.ashrc/etc :
 
-	alias docker-compose="docker run -v \"\$(pwd)\":/app ... dduportal/docker-compose:latest"
+    echo 'alias docker-compose="docker run -v \"\$(pwd)\":/app -v /var/run/docker.sock:/var/run/docker.sock -ti --rm dduportal/docker-compose:latest"' >> ~/.ashrc
 
 **Customize image from your custom Dockerfile**
 
-If the image doesn't fit your needs "as it", you can customize it thru a Dockerfile, for example :
+If the image doesn't fit your needs "as it", you can customize it using your own Dockerfile, for example :
 
     FROM dduportal/docker-compose:latest
     MAINTAINER your.mail@here
@@ -49,12 +51,12 @@ If the image doesn't fit your needs "as it", you can customize it thru a Dockerf
     
     # Your custom stuff here if needed
 
-Note that ENTRYPOINT will be herited.
+Note that ENTRYPOINT will be inherited.
 
 Run it now (without option while you provide them inside the image instead of at run time ) :
 
     docker build -t you/docker-compose ./
-    docker run -ti you/docker-compose ps
+    docker run -ti --rm you/docker-compose ps
 
 ## Volumes : relative and absolute
 
@@ -77,4 +79,4 @@ Pick at least one :
 * (Re)Write the documentation corrections
 
 
-Finnaly, open the Pull Request : CircleCi will automatically build and test for you
+Finally, open the Pull Request : CircleCi will automatically build and test for you
