@@ -35,7 +35,7 @@ On Windows, you should add ```/``` to help the path conversion [(courtesy of @jo
 
 If you don't want to repeat yourself by typing all the options each time, just add an alias (interactive or in your .profile/.ashrc/etc :
 
-	alias docker-compose="docker run -v \"\$(pwd)\":/app ... dduportal/docker-compose:latest"
+    echo 'alias docker-compose="docker run -v \"\$(pwd)\":/app -v /var/run/docker.sock:/var/run/docker.sock -ti --rm dduportal/docker-compose:latest"' >> ~/.ashrc
 
 **Customize image from your custom Dockerfile**
 
