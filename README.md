@@ -15,6 +15,7 @@ Just run it as a normal command, sharing the directory containing your docker-co
 ```bash
 $ docker run -v "$(pwd)":/app \
              -v /var/run/docker.sock:/var/run/docker.sock \
+             -e COMPOSE_PROJECT_NAME=$(basename "$(pwd)") \
              -ti --rm \
              dduportal/docker-compose:latest --help
 ```
@@ -27,6 +28,7 @@ In this example, we'll call docker-compose non-interactively (from a bash script
 ```bash
 $ docker run -v "$(pwd)":/app \
              -e DOCKER_HOST=tcp://10.0.2.15:2375 \
+             -e COMPOSE_PROJECT_NAME=$(basename "$(pwd)") \
              --rm \
              dduportal/docker-compose:latest up -d
 ```
@@ -36,6 +38,7 @@ On Windows when using the Boot2Docker provided MSYS shell, you should add ```/``
 ```bash
 $ docker run -v "/$(pwd)":/app \
              -v //var/run/docker.sock:/var/run/docker.sock \
+             -e COMPOSE_PROJECT_NAME=$(basename "/$(pwd)") \
              -ti --rm \
              dduportal/docker-compose:latest
 ```
@@ -47,7 +50,7 @@ Note: On Windows, if you are using MSYS **v2** or Cygwin (where ```pwd``` in the
 If you don't want to repeat yourself by typing all the options each time, just add an alias (interactive or in your .profile/.ashrc/etc :
 
 ```bash
-    echo 'alias docker-compose="docker run -v \"\$(pwd)\":/app -v /var/run/docker.sock:/var/run/docker.sock -ti --rm dduportal/docker-compose:latest"' \
+    echo 'alias docker-compose="docker run -v \"\$(pwd)\":/app -v /var/run/docker.sock:/var/run/docker.sock -e COMPOSE_PROJECT_NAME=\$(basename \"\$(pwd)\") -ti --rm dduportal/docker-compose:latest"' \
     >> ~/.ashrc
 ```
 
