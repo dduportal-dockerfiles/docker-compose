@@ -1,6 +1,6 @@
 .PHONY: build test all
 
-DOCKER_IMAGE_NAME=docker-compose
+DOCKER_IMAGE_NAME=dduportal/docker-compose
 
 all: build test
 

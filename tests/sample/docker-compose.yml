@@ -1,4 +1,4 @@
 front:
   build: .
 bb:
-  image: busybox:latest
+  image: debian:8.1

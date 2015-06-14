@@ -6,7 +6,7 @@
 	echo "-$result-"
 }
 
-@test "A Basic fig.yml must build an run" {
+@test "A Basic fig.yml must run a complete lifecycle" {
 	# Docker-ception !!!!
 	# Note the remount due to lxc not following volumes from with old versions of Docker
 	# in Circle Ci
@@ -23,9 +23,23 @@
 		-e DOCKER_HOST=unix:///docker.sock \
 		--workdir /app/tests/sample \
 		"${DOCKER_IMAGE_NAME}" up -d
+
+	docker run \
+		--volumes-from $(hostname) \
+		-v /var/run/docker.sock:/docker.sock \
+		-e DOCKER_HOST=unix:///docker.sock \
+		--workdir /app/tests/sample \
+		"${DOCKER_IMAGE_NAME}" kill
+
+	docker run \
+		--volumes-from $(hostname) \
+		-v /var/run/docker.sock:/docker.sock \
+		-e DOCKER_HOST=unix:///docker.sock \
+		--workdir /app/tests/sample \
+		"${DOCKER_IMAGE_NAME}" rm -f
 }
 
 DEBIAN_VERSION=8.1
 @test "We use the debian linux version ${DEBIAN_VERSION}" {
-	[ $(docker run --entrypoint sh "${DOCKER_IMAGE_NAME}" -c "grep -e \"=${DEBIAN_VERSION}.\" /etc/debian_version | wc -l") -eq 1 ]
+	[ $(docker run --entrypoint sh "${DOCKER_IMAGE_NAME}" -c "grep \"${DEBIAN_VERSION}\" /etc/debian_version | wc -l") -eq 1 ]
 }
