@@ -24,19 +24,6 @@
 		--workdir /app/tests/sample \
 		"${DOCKER_IMAGE_NAME}" up -d
 
-	docker run \
-		--volumes-from $(hostname) \
-		-v /var/run/docker.sock:/docker.sock \
-		-e DOCKER_HOST=unix:///docker.sock \
-		--workdir /app/tests/sample \
-		"${DOCKER_IMAGE_NAME}" kill
-
-	docker run \
-		--volumes-from $(hostname) \
-		-v /var/run/docker.sock:/docker.sock \
-		-e DOCKER_HOST=unix:///docker.sock \
-		--workdir /app/tests/sample \
-		"${DOCKER_IMAGE_NAME}" rm -f
 }
 
 DEBIAN_VERSION=8.1
