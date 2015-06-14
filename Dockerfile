@@ -1,16 +1,14 @@
-FROM alpine:3.2
+FROM debian:8.1
 MAINTAINER Damien DUPORTAL <damien.duportal@gmail.com>
 MAINTAINER Christophe FURMANIAK <christophe.furmaniak@gmail.com>
 MAINTAINER Joseph PAGE <https://github.com/josephpage>
 MAINTAINER Ed Morley <https://github.com/edmorley>
 
-ENV DOCKER_COMPOSE_VERSION 1.2.0
-
-RUN apk --update add py-pip \
-	&& pip install -U docker-compose==${DOCKER_COMPOSE_VERSION}
-
+ADD https://github.com/docker/compose/releases/download/1.2.0/docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
+#curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
 
 # This container is a chrooted docker-compose
 WORKDIR /app
-ENTRYPOINT ["/usr/bin/docker-compose"]
+ENTRYPOINT ["/usr/local/bin/docker-compose"]
 CMD ["--version"]
