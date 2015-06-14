@@ -1,6 +1,6 @@
-FROM alpine:3.1
+FROM debian:8.1
 MAINTAINER damien.duportal@gmail.com
 
-RUN apk add --update bash
+RUN apt-get update -y -q
 ENTRYPOINT ["/bin/bash"]
 CMD ["--version"]
