@@ -13,9 +13,10 @@ More information on the official Docker documentation : https://docs.docker.com/
 Just run it as a normal command, sharing the directory containing your docker-compose.yml file and the Docker Unix socket :
 
 ```bash
-$ docker run -v "$(pwd)":/app \
+$ docker run -v "$(pwd)":"$(pwd)" \
              -v /var/run/docker.sock:/var/run/docker.sock \
              -e COMPOSE_PROJECT_NAME=$(basename "$(pwd)") \
+             --workdir="$(pwd)" \
              -ti --rm \
              dduportal/docker-compose:latest --help
 ```
@@ -26,9 +27,10 @@ When using another socket than the default Unix one (remote Docker engine use ca
 In this example, we'll call docker-compose non-interactively (from a bash script for example), given that the Docker daemon listen through a TCP connection at 10.0.2.15:2375 :
 
 ```bash
-$ docker run -v "$(pwd)":/app \
+$ docker run -v "$(pwd)":"$(pwd)" \
              -e DOCKER_HOST=tcp://10.0.2.15:2375 \
              -e COMPOSE_PROJECT_NAME=$(basename "$(pwd)") \
+             --workdir="$(pwd)" \
              --rm \
              dduportal/docker-compose:latest up -d
 ```
@@ -36,9 +38,10 @@ $ docker run -v "$(pwd)":/app \
 On Windows when using the Boot2Docker provided MSYS shell, you should add ```/``` before each of the host paths passed to ```-v```, to help the path conversion [(courtesy of @joostfarla)](https://github.com/dduportal-dockerfiles/docker-compose/issues/1#issuecomment-99464292) :
 
 ```bash
-$ docker run -v "/$(pwd)":/app \
+$ docker run -v "/$(pwd)":"/$(pwd)" \
              -v //var/run/docker.sock:/var/run/docker.sock \
              -e COMPOSE_PROJECT_NAME=$(basename "/$(pwd)") \
+             --workdir="$(pwd)" \
              -ti --rm \
              dduportal/docker-compose:latest
 ```
@@ -50,7 +53,7 @@ Note: On Windows, if you are using MSYS **v2** or Cygwin (where ```pwd``` in the
 If you don't want to repeat yourself by typing all the options each time, just add an alias (interactive or in your .profile/.ashrc/etc :
 
 ```bash
-    echo 'alias docker-compose="docker run -v \"\$(pwd)\":/app -v /var/run/docker.sock:/var/run/docker.sock -e COMPOSE_PROJECT_NAME=\$(basename \"\$(pwd)\") -ti --rm dduportal/docker-compose:latest"' \
+    echo 'alias docker-compose="docker run -v \"\$(pwd)\":\"\$(pwd)\" -v /var/run/docker.sock:/var/run/docker.sock -e COMPOSE_PROJECT_NAME=\$(basename \"\$(pwd)\") -ti --rm --workdir=\"\$(pwd)\" dduportal/docker-compose:latest"' \
     >> ~/.ashrc
 ```
 
@@ -60,10 +63,10 @@ If the image doesn't fit your needs "as it", you can customize it using your own
 
     FROM dduportal/docker-compose:latest
     MAINTAINER your.mail@here
-    
+
     ADD . /app/ # your docker-compose.yml can be copied inside the image
     ENV DOCKER_HOST tcp://192.168.0.1:2375 # Customize the docker socket
-    
+
     # Your custom stuff here if needed
 
 Note that ENTRYPOINT will be inherited.
