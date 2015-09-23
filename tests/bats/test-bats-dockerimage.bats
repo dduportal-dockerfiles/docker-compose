@@ -1,8 +1,9 @@
 #!/usr/bin/env bats
 
-@test "With no cmd/args, the image return docker-compose version" {
+COMPOSE_VERSION=1.4.2
+@test "With no cmd/args, the image return docker-compose version ${COMPOSE_VERSION}" {
 	result="$(docker run ${DOCKER_IMAGE_NAME})"
-	[[ "$result" == *"docker-compose version: 1.3.3"* ]]
+	[[ "$result" == *"docker-compose version: ${COMPOSE_VERSION}"* ]]
 	echo "-$result-"
 }
 
