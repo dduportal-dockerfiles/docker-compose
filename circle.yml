@@ -9,8 +9,3 @@ dependencies:
 test:
   override:
     - make test
-deployment:
-  hub:
-    branch: master
-    commands:
-      - curl --data "build=true" -X POST "$DOCKERHUB_AUTOBUILD_URL"
