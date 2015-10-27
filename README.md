@@ -4,13 +4,13 @@
 
 My personal touch forkded from [dduportal-dockerfiles/docker-compose](https://github.com/dduportal-dockerfiles/docker-compose). Thanks Damien !
 
+*Circle CI integration status :* [![Circle CI](https://circleci.com/gh/AlbanMontaigu/docker-compose.svg?style=svg)](https://circleci.com/gh/AlbanMontaigu/docker-compose)
+
 ## What is Docker Compose ? ##
 
 Compose is a tool for defining and running complex applications with Docker. With Compose, you define a multi-container application in a single file, then spin your application up in a single command which does everything that needs to be done to get it running.
 
 More information on the official Docker documentation : https://docs.docker.com/compose/
-
-[![Circle CI](https://circleci.com/gh/AlbanMontaigu/docker-compose.svg?style=svg)](https://circleci.com/gh/AlbanMontaigu/docker-compose)
 
 ## How do you use this image ? ##
 
