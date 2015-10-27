@@ -1,10 +1,16 @@
+# Docker compose
+
+## Introduction
+
+My personal touch forkded from [dduportal-dockerfiles/docker-compose](https://github.com/dduportal-dockerfiles/docker-compose). Thanks Damien !
+
 ## What is Docker Compose ? ##
 
 Compose is a tool for defining and running complex applications with Docker. With Compose, you define a multi-container application in a single file, then spin your application up in a single command which does everything that needs to be done to get it running.
 
 More information on the official Docker documentation : https://docs.docker.com/compose/
 
-[![CircleCi Build Status](https://circleci.com/gh/dduportal-dockerfiles/docker-compose.svg?&style=shield)](https://circleci.com/gh/dduportal-dockerfiles/docker-compose)
+[![Circle CI](https://circleci.com/gh/AlbanMontaigu/docker-compose.svg?style=svg)](https://circleci.com/gh/AlbanMontaigu/docker-compose)
 
 ## How do you use this image ? ##
 
@@ -17,7 +23,7 @@ $ docker run -v "$(pwd)":/app \
              -v /var/run/docker.sock:/var/run/docker.sock \
              -e COMPOSE_PROJECT_NAME=$(basename "$(pwd)") \
              -ti --rm \
-             dduportal/docker-compose:latest --help
+             amontaigu/docker-compose:latest --help
 ```
 
 **Customize the Docker socket**
@@ -30,7 +36,7 @@ $ docker run -v "$(pwd)":/app \
              -e DOCKER_HOST=tcp://10.0.2.15:2375 \
              -e COMPOSE_PROJECT_NAME=$(basename "$(pwd)") \
              --rm \
-             dduportal/docker-compose:latest up -d
+             amontaigu/docker-compose:latest up -d
 ```
 
 On Windows when using the Boot2Docker provided MSYS shell, you should add ```/``` before each of the host paths passed to ```-v```, to help the path conversion [(courtesy of @joostfarla)](https://github.com/dduportal-dockerfiles/docker-compose/issues/1#issuecomment-99464292) :
@@ -40,7 +46,7 @@ $ docker run -v "/$(pwd)":/app \
              -v //var/run/docker.sock:/var/run/docker.sock \
              -e COMPOSE_PROJECT_NAME=$(basename "/$(pwd)") \
              -ti --rm \
-             dduportal/docker-compose:latest
+             amontaigu/docker-compose:latest
 ```
 
 Note: On Windows, if you are using MSYS **v2** or Cygwin (where ```pwd``` in the home directory returns /home/Foo, rather than /c/Users/Foo), you'll also need to replace ```$(pwd)``` with ```$(pwd | sed s_/home_/c/Users_)```, so the correct directory is mounted.
@@ -50,7 +56,7 @@ Note: On Windows, if you are using MSYS **v2** or Cygwin (where ```pwd``` in the
 If you don't want to repeat yourself by typing all the options each time, just add an alias (interactive or in your .profile/.ashrc/etc :
 
 ```bash
-    echo 'alias docker-compose="docker run -v \"\$(pwd)\":/app -v /var/run/docker.sock:/var/run/docker.sock -e COMPOSE_PROJECT_NAME=\$(basename \"\$(pwd)\") -ti --rm dduportal/docker-compose:latest"' \
+    echo 'alias docker-compose="docker run -v \"\$(pwd)\":/app -v /var/run/docker.sock:/var/run/docker.sock -e COMPOSE_PROJECT_NAME=\$(basename \"\$(pwd)\") -ti --rm amontaigu/docker-compose:latest"' \
     >> ~/.ashrc
 ```
 
@@ -58,7 +64,7 @@ If you don't want to repeat yourself by typing all the options each time, just a
 
 If the image doesn't fit your needs "as it", you can customize it using your own Dockerfile, for example :
 
-    FROM dduportal/docker-compose:latest
+    FROM amontaigu/docker-compose:latest
     MAINTAINER your.mail@here
     
     ADD . /app/ # your docker-compose.yml can be copied inside the image
