@@ -4,7 +4,7 @@
 
 My personal touch forkded from [dduportal-dockerfiles/docker-compose](https://github.com/dduportal-dockerfiles/docker-compose). Thanks Damien !
 
-*Circle CI integration status :* [![Circle CI](https://circleci.com/gh/AlbanMontaigu/docker-compose.svg?style=svg)](https://circleci.com/gh/AlbanMontaigu/docker-compose)
+**Circle CI integration status :** [![Circle CI](https://circleci.com/gh/AlbanMontaigu/docker-compose.svg?style=svg)](https://circleci.com/gh/AlbanMontaigu/docker-compose)
 
 ## What is Docker Compose ? ##
 
