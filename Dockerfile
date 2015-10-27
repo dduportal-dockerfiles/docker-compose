@@ -7,7 +7,7 @@ MAINTAINER Ed Morley <https://github.com/edmorley>
 MAINTAINER Alban Montaigu <https://github.com/AlbanMontaigu>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV COMPOSE_VERSION 1.4.1
+ENV COMPOSE_VERSION 1.4.2
 
 RUN apt-get update -q \
 	&& apt-get install -y -q --no-install-recommends curl ca-certificates \
