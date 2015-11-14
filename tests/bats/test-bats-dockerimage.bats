@@ -2,7 +2,7 @@
 
 @test "With no cmd/args, the image return docker-compose version" {
 	result="$(docker run ${DOCKER_IMAGE_NAME})"
-	[[ "$result" == *"docker-compose version: 1.5.0"* ]]
+	[[ "$result" == *"docker-compose version: 1.5.1"* ]]
 	echo "-$result-"
 }
 
