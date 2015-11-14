@@ -1,10 +1,8 @@
-# Docker compose
+# Docker compose [![Circle CI](https://circleci.com/gh/AlbanMontaigu/docker-compose.svg?style=shield)](https://circleci.com/gh/AlbanMontaigu/docker-compose)
 
 ## Introduction
 
 My personal touch forkded from [dduportal-dockerfiles/docker-compose](https://github.com/dduportal-dockerfiles/docker-compose). Thanks Damien !
-
-[![Circle CI](https://circleci.com/gh/AlbanMontaigu/docker-compose.svg?style=shield)](https://circleci.com/gh/AlbanMontaigu/docker-compose)
 
 ## What is Docker Compose ? ##
 
