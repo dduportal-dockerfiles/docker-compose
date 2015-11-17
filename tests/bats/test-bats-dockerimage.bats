@@ -1,6 +1,5 @@
 #!/usr/bin/env bats
 
-COMPOSE_VERSION=1.5.0
 @test "With no cmd/args, the image return docker-compose version ${COMPOSE_VERSION}" {
 	result="$(docker run ${DOCKER_IMAGE_NAME})"
 	[[ "$result" == *"docker-compose version: ${COMPOSE_VERSION}"* ]]

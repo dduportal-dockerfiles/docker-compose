@@ -1,5 +1,8 @@
 # Docker-compose Docker Image CHANGELOG
 
+## 2015-11-17
+* Update to [docker-compose 1.5.1](https://github.com/docker/compose/releases/tag/1.5.1)
+
 ## 2015-11-11
 * Thanks to [d3m3vilurr](https://github.com/dduportal-dockerfiles/docker-compose/pull/21) - Update to [docker-compose 1.5.0](https://github.com/docker/compose/releases/tag/1.5.0)
 * Moving to Docker 1.9.0 for integration tests
