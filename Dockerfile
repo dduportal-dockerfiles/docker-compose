@@ -1,4 +1,4 @@
-FROM debian:8.1
+FROM debian:8.2
 
 MAINTAINER Damien DUPORTAL <damien.duportal@gmail.com>
 MAINTAINER Christophe FURMANIAK <christophe.furmaniak@gmail.com>
