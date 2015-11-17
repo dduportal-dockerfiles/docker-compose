@@ -25,8 +25,3 @@
 		"${DOCKER_IMAGE_NAME}" up -d
 
 }
-
-DEBIAN_VERSION=8.1
-@test "We use the debian linux version ${DEBIAN_VERSION}" {
-	[ $(docker run --entrypoint sh "${DOCKER_IMAGE_NAME}" -c "grep \"${DEBIAN_VERSION}\" /etc/debian_version | wc -l") -eq 1 ]
-}
