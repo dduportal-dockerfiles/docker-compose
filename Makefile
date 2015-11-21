@@ -6,7 +6,10 @@ COMPOSE_VERSION=1.5.1
 all: build test
 
 build:
-	docker build --build-arg COMPOSE_VERSION=$(COMPOSE_VERSION) --tag $(DOCKER_IMAGE_NAME) .
+	docker build --build-arg COMPOSE_VERSION=$(COMPOSE_VERSION) \
+		--tag $(DOCKER_IMAGE_NAME) \
+		-f Dockerfile-19 \
+		./
 
 test:
 	docker run \
