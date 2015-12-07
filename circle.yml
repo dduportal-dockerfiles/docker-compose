@@ -15,5 +15,5 @@ deployment:
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push amontaigu/docker-compose:latest
-      - docker tag amontaigu/docker-compose:latest amontaigu/docker-compose:1.5.1
-      - docker push amontaigu/docker-compose:1.5.1
+      - docker tag amontaigu/docker-compose:latest amontaigu/docker-compose:1.5.2
+      - docker push amontaigu/docker-compose:1.5.2
