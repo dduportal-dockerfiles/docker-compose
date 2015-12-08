@@ -6,7 +6,7 @@ COMPOSE_VERSION=1.5.2
 all: build test
 
 build:
-	docker build --build-arg COMPOSE_VERSION=$(COMPOSE_VERSION) \
+	docker build \
 		--tag $(DOCKER_IMAGE_NAME) \
 		./
 
