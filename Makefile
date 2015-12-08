@@ -1,14 +1,13 @@
 .PHONY: build test all
 
 DOCKER_IMAGE_NAME=dduportal/docker-compose
-COMPOSE_VERSION=1.5.1
+COMPOSE_VERSION=1.5.2
 
 all: build test
 
 build:
 	docker build --build-arg COMPOSE_VERSION=$(COMPOSE_VERSION) \
 		--tag $(DOCKER_IMAGE_NAME) \
-		-f Dockerfile-19 \
 		./
 
 test:
