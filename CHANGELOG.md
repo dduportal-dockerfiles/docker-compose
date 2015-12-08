@@ -1,5 +1,8 @@
 # Docker-compose Docker Image CHANGELOG
 
+## 2015-12-08
+* Update to [docker-compose 1.5.1](https://github.com/docker/compose/releases/tag/1.5.2)
+
 ## 2015-11-17
 * Update to [docker-compose 1.5.1](https://github.com/docker/compose/releases/tag/1.5.1)
 * Moving to debian:8.2 image

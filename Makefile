@@ -1,7 +1,7 @@
 .PHONY: build test all
 
 DOCKER_IMAGE_NAME=dduportal/docker-compose
-COMPOSE_VERSION=1.5.1
+COMPOSE_VERSION=1.5.2
 
 all: build test
 
