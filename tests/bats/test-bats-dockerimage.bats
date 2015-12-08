@@ -1,9 +1,7 @@
 #!/usr/bin/env bats
 
 @test "With no cmd/args, the image return docker-compose version ${COMPOSE_VERSION}" {
-	result="$(docker run ${DOCKER_IMAGE_NAME})"
-	[[ "$result" == *"docker-compose version: ${COMPOSE_VERSION}"* ]]
-	echo "-$result-"
+	docker run "${DOCKER_IMAGE_NAME}" | grep "${COMPOSE_VERSION}"
 }
 
 @test "A Basic fig.yml must run a complete lifecycle" {
