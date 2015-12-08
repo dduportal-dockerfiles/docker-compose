@@ -8,7 +8,6 @@ all: build test
 build:
 	docker build --build-arg COMPOSE_VERSION=$(COMPOSE_VERSION) \
 		--tag $(DOCKER_IMAGE_NAME) \
-		-f Dockerfile-19 \
 		./
 
 test:
