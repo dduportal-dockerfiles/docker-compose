@@ -1,7 +1,10 @@
 # Docker-compose Docker Image CHANGELOG
 
+## 2016-02-13
+* Update to [docker-compose 1.6.0](https://github.com/docker/compose/releases/tag/1.6.0)
+
 ## 2015-12-08
-* Update to [docker-compose 1.5.1](https://github.com/docker/compose/releases/tag/1.5.2)
+* Update to [docker-compose 1.5.2](https://github.com/docker/compose/releases/tag/1.5.2)
 
 ## 2015-11-17
 * Update to [docker-compose 1.5.1](https://github.com/docker/compose/releases/tag/1.5.1)
